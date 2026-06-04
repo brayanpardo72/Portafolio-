@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CIVIL DATA | Engineering &amp; Data Science Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #414755;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #adc6ff;
+        }
+
+        .glass-card {
+            background: rgba(32, 31, 31, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(173, 198, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 320px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .custom-slider {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .custom-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container": "#201f1f",
+                        "outline": "#8b90a0",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313",
+                        "outline-variant": "#414755",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-tertiary-container": "#282a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-container": "#b5b4ba",
+                        "tertiary": "#c6c6c7",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface": "#131313",
+                        "on-secondary-fixed-variant": "#46464b",
+                        "primary-container": "#4b8eff",
+                        "inverse-primary": "#005bc1",
+                        "on-secondary": "#2f3034",
+                        "on-tertiary": "#2f3131",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "surface-tint": "#adc6ff",
+                        "secondary": "#c6c6cb",
+                        "surface-variant": "#353534",
+                        "on-error": "#690005",
+                        "primary": "#adc6ff",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-container": "#00285c",
+                        "on-primary-fixed-variant": "#004493",
+                        "secondary-fixed": "#e3e2e7",
+                        "on-secondary-fixed": "#1a1b1f",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-container": "#909191",
+                        "on-primary-fixed": "#001a41",
+                        "secondary-fixed-dim": "#c6c6cb",
+                        "on-surface-variant": "#c1c6d7",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#46464b",
+                        "surface-bright": "#3a3939",
+                        "inverse-on-surface": "#313030",
+                        "on-background": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-primary": "#002e69",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-gap": "120px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10 shadow-2xl">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">CIVIL DATA</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#education">Education</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#experience">Experience</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#skills">Skills</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#projects">Projects</a>
+<button class="bg-primary text-on-primary-container px-6 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:scale-105 transition-transform">Download CV</button>
+</div>
+<div class="flex md:hidden gap-4">
+<span class="material-symbols-outlined">school</span>
+<span class="material-symbols-outlined">terminal</span>
+<span class="material-symbols-outlined">architecture</span>
+</div>
+</div>
+</nav>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="min-h-[90vh] flex items-center px-6 md:px-margin-desktop max-w-container-max mx-auto mb-section-gap" id="hero">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="order-2 lg:order-1 space-y-8">
+<div>
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-[0.2em] mb-4 block">Innovación Infraestructural</span>
+<h1 class="font-display-lg text-4xl md:text-display-lg tracking-tighter leading-tight text-on-surface">
+                            Ingeniería Civil <span class="text-primary-container">&amp;</span> Data Science
+                        </h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Especialista en la convergencia de la infraestructura física y el análisis computacional. Transformo datos geoespaciales y estructurales en decisiones estratégicas mediante modelos predictivos y gemelos digitales.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="glass-card px-4 py-4 rounded-xl flex items-center justify-center hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+<a class="glass-card px-4 py-4 rounded-xl flex items-center justify-center hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">description</span>
+</a>
+<a class="glass-card px-4 py-4 rounded-xl flex items-center justify-center hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">school</span>
+</a>
+<a class="glass-card px-4 py-4 rounded-xl flex items-center justify-center hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">code</span>
+</a>
+</div>
+</div>
+<div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+<div class="relative w-64 h-64 md:w-[400px] md:h-[400px]">
+<div class="absolute inset-0 bg-primary/20 blur-[80px] rounded-full"></div>
+<img alt="Profile" class="w-full h-full object-cover rounded-3xl border border-white/10 shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRGWTKw4HmtkpXTpZPOM0aImS12-0dzrTEDfhhVyOc_sp28hEG0-0iWktALUbBCX-WwSLgFcSTVbBA3QguJD-0TJ9DujyYLQmiAes6gykTxdkRYEX6Xr3T1PqOUFcPKEufeFkHBjrLDDXsZ_uOu9uPdCWByjUblZ4FBeK2I-860vGaVAAk_l0jN0NcwAm9OifaeGWhsJmiQHNBnBcF-SJPW6_hB75wniP3ODV3BmDZzBUIa35qqBShRpYanhsxciGtnCTcB-DYSFMd"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section: Flip Cards -->
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-section-gap" id="skills">
+<h2 class="font-headline-lg text-headline-lg mb-16 text-center">Especialidades Técnicas</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front glass-card p-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-4">analytics</span>
+<h3 class="font-headline-md text-headline-md">Ciencia de Datos e IA</h3>
+</div>
+<div class="flip-card-back bg-primary-container p-8 flex flex-col justify-center text-on-primary-container">
+<ul class="space-y-3 font-label-sm text-label-sm uppercase tracking-wider">
+<li>• Python &amp; ML</li>
+<li>• Data Science</li>
+<li>• Automation</li>
+<li>• Predictive Analysis</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front glass-card p-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-4">map</span>
+<h3 class="font-headline-md text-headline-md">SIG y Teledetección</h3>
+</div>
+<div class="flip-card-back bg-surface-container-high p-8 flex flex-col justify-center text-on-surface">
+<ul class="space-y-3 font-label-sm text-label-sm uppercase tracking-wider">
+<li>• GIS Systems</li>
+<li>• Satellite Imagery</li>
+<li>• Spatial Analysis</li>
+<li>• Remote Sensing</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front glass-card p-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-4">foundation</span>
+<h3 class="font-headline-md text-headline-md">Geotecnia Avanzada</h3>
+</div>
+<div class="flip-card-back bg-primary p-8 flex flex-col justify-center text-on-primary">
+<ul class="space-y-3 font-label-sm text-label-sm uppercase tracking-wider">
+<li>• Soil Mechanics</li>
+<li>• Erosion Control</li>
+<li>• Numerical Modeling</li>
+<li>• Site Investigation</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front glass-card p-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-4">apartment</span>
+<h3 class="font-headline-md text-headline-md">BIM &amp; Proyectos</h3>
+</div>
+<div class="flip-card-back bg-surface-container-lowest p-8 flex flex-col justify-center text-on-surface">
+<ul class="space-y-3 font-label-sm text-label-sm uppercase tracking-wider">
+<li>• Revit &amp; BIM</li>
+<li>• Digital Twins</li>
+<li>• Project Planning</li>
+<li>• Asset Management</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Education Section: Vertical Timeline -->
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-section-gap" id="education">
+<h2 class="font-headline-lg text-headline-lg mb-16">Formación Académica</h2>
+<div class="relative border-l-2 border-outline-variant ml-4 md:ml-8 pl-8 md:pl-16 space-y-16">
+<!-- Item 1 -->
+<div class="relative">
+<div class="absolute -left-[41px] md:-left-[73px] top-0 w-4 h-4 rounded-full bg-primary ring-8 ring-background"></div>
+<div>
+<span class="text-primary-fixed-dim font-label-sm text-label-sm uppercase tracking-widest">2021 - 2023</span>
+<h3 class="font-headline-md text-headline-md mt-2">Maestría en Ingeniería Civil</h3>
+<p class="text-on-surface-variant font-body-md mt-2">Énfasis en Hidrosistemas y Modelación Computacional</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative">
+<div class="absolute -left-[41px] md:-left-[73px] top-0 w-4 h-4 rounded-full bg-outline-variant ring-8 ring-background"></div>
+<div>
+<span class="text-on-secondary-container font-label-sm text-label-sm uppercase tracking-widest">2015 - 2020</span>
+<h3 class="font-headline-md text-headline-md mt-2">Ingeniería Civil</h3>
+<p class="text-on-surface-variant font-body-md mt-2">Universidad Distrital Francisco José de Caldas</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="relative">
+<div class="absolute -left-[41px] md:-left-[73px] top-0 w-4 h-4 rounded-full bg-outline-variant ring-8 ring-background"></div>
+<div>
+<span class="text-on-secondary-container font-label-sm text-label-sm uppercase tracking-widest">2023</span>
+<h3 class="font-headline-md text-headline-md mt-2">Certificación en Data Science Avanzado</h3>
+<p class="text-on-surface-variant font-body-md mt-2">Harvard Professional Certificate</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section: Premium Carousel -->
+<section class="mb-section-gap overflow-hidden" id="projects">
+<div class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-12">
+<h2 class="font-headline-lg text-headline-lg">Proyectos Destacados</h2>
+</div>
+<div class="flex gap-gutter overflow-x-auto px-6 md:px-margin-desktop py-8 custom-slider">
+<!-- Project 1 -->
+<div class="min-w-[320px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden group">
+<div class="h-64 overflow-hidden">
+<div class="w-full h-full bg-surface-container-highest flex items-center justify-center relative" data-alt="A sprawling construction site from an aerial perspective during the golden hour, showcasing the intricate structural foundations and heavy machinery. The atmosphere is industrial yet sophisticated, with long shadows casting a sense of architectural depth and organized complexity. High contrast and deep warm tones emphasize the raw engineering power." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYxG4VGvqhe-HX8IKsqG5eZ4st42Vj5IqtZoGsYidrYb1Nphs8QooTJUSgQIxd3ABY3yA9duLiC8knmiOArDr-S6ONoS15SdC5QCmA9SJ7cL-4w26s_Tj_SpatxYYqdmzCMEC6o9SYHmsQeVRV-AXAoNeWzgzDT0NStVd4k1QRygw-z1eifI9EUyr6leBHS4kefaqzid_uKto-zXMmTnJcKuIEsMnPx5XsgBbcp0uSDa8jYr_qjSEh4Ay0Qb20xgWuDVO5zZnkOj00'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+</div>
+</div>
+<div class="p-8 space-y-4">
+<h3 class="font-headline-md text-headline-md">Detección de Minería Ilegal</h3>
+<p class="text-on-surface-variant font-body-md">Algoritmo de visión artificial para identificar cambios en la cobertura vegetal mediante imágenes satelitales Sentinel-2.</p>
+<button class="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+                            View More <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="min-w-[320px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden group">
+<div class="h-64 overflow-hidden">
+<div class="w-full h-full bg-surface-container-highest flex items-center justify-center relative" data-alt="A sleek, futuristic dashboard interface displaying complex data visualizations, including 3D structural models and real-time sensor analytics. The color scheme is dominated by deep obsidian and vibrant electric blue, creating a high-tech laboratory aesthetic. Translucent glass panels and glowing node-link diagrams suggest advanced digital twin technology in a professional environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaN96SP08_8GfKwk1WPY-6_yPNMW1lP_VVIOQtw8VndrpFv6NyoUY2p444jE9-S8y3PICRS1s3Y_AXfP6j3z0Ar7OSU7mqJqH8Hj-LUKkNqKBe0XK3qv837_hBSPZa_fIUmpKHXHXKaoJjbg36GvUBza7C-0L3nhfmq0vbaj-fui-5LdAo9QrUHd_4nVKNY_NufbnwT8wH4ktsxXehcbbcTv8YKPEK4iqHFhVPTWjS_6cllobq1K56K4V9k0Br8Lpimiea4cSkkXYL'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+</div>
+</div>
+<div class="p-8 space-y-4">
+<h3 class="font-headline-md text-headline-md">Digital Twin: Infraestructura Vial</h3>
+<p class="text-on-surface-variant font-body-md">Réplica digital de un puente colgante integrando sensores IoT para el monitoreo estructural en tiempo real.</p>
+<button class="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+                            View More <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="min-w-[320px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden group">
+<div class="h-64 overflow-hidden">
+<div class="w-full h-full bg-surface-container-highest flex items-center justify-center relative" data-alt="A cinematic view of the Earth from space, focusing on urban patterns illuminated at night. The image captures the delicate interconnectedness of global infrastructure through a lens of high-resolution satellite data. The aesthetic is clean, dark, and expansive, with soft glows from city lights contrasting against the deep void of space. Professional, scientific, and awe-inspiring." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlDZvlI13Sid318_JJlgqeoCMh2fFQFvJdAxjfh2cNpMS1Wi_bociHu5AMNg0fakEF1O7vHiwJrS2N0dRw4TENSbdbhSaAzGPaR03e1nYIcUV_Dtl2BC7tN94adyU6RdSowhC_A78-IbFWyLFeB14ao_B8K8Aq_Dv3kxKlRlgNfEoYM775qiB-soAUQZaYyYtx6YpNw67b1QayEAXYhiUv3BPVhmBG-5xbQx9lyhO0ORQQHBs-iEchRdqTM_KnKDdkvkTP-joUvNnp'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+</div>
+</div>
+<div class="p-8 space-y-4">
+<h3 class="font-headline-md text-headline-md">Optimización de Redes de Acueducto</h3>
+<p class="text-on-surface-variant font-body-md">Uso de algoritmos genéticos para minimizar pérdidas de presión y energía en redes metropolitanas.</p>
+<button class="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+                            View More <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Section: Horizontal Sliders -->
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-section-gap" id="experience">
+<h2 class="font-headline-lg text-headline-lg mb-16">Trayectoria Profesional</h2>
+<div class="flex gap-gutter overflow-x-auto pb-8 custom-slider">
+<!-- Exp 1 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-2xl">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm mb-6 inline-block">2022 - Actualidad</span>
+<h3 class="font-headline-md text-headline-md">Senior Data Analyst</h3>
+<p class="text-primary-container font-body-md mb-4">Secretaría de Infraestructura</p>
+<p class="text-on-surface-variant font-body-md italic mb-4">"Liderazgo en la automatización de reportes de avance de obra mediante Python y Power BI."</p>
+<ul class="text-label-sm font-label-sm uppercase tracking-wider space-y-2 text-on-surface/60">
+<li>• ML Models</li>
+<li>• BIM Integration</li>
+</ul>
+</div>
+<!-- Exp 2 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-2xl">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm mb-6 inline-block">2020 - 2022</span>
+<h3 class="font-headline-md text-headline-md">Ingeniero de Proyectos BIM</h3>
+<p class="text-primary-container font-body-md mb-4">Consorcio Vías Nacionales</p>
+<p class="text-on-surface-variant font-body-md italic mb-4">"Coordinación de modelos 3D y detección de interferencias en proyectos de alta complejidad."</p>
+<ul class="text-label-sm font-label-sm uppercase tracking-wider space-y-2 text-on-surface/60">
+<li>• Navisworks</li>
+<li>• Civil 3D</li>
+</ul>
+</div>
+<!-- Exp 3 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-2xl">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm mb-6 inline-block">2019 - 2020</span>
+<h3 class="font-headline-md text-headline-md">Pasante de Geotecnia</h3>
+<p class="text-primary-container font-body-md mb-4">Instituto de Investigación Geológica</p>
+<p class="text-on-surface-variant font-body-md italic mb-4">"Análisis de estabilidad de taludes y modelación de procesos erosivos en zonas críticas."</p>
+<ul class="text-label-sm font-label-sm uppercase tracking-wider space-y-2 text-on-surface/60">
+<li>• GeoStudio</li>
+<li>• Field Tests</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Technologies Section -->
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg mb-12 text-center">Stack Tecnológico</h2>
+<div class="flex flex-wrap justify-center gap-4">
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest text-primary border border-primary/20 hover:bg-primary hover:text-on-primary cursor-default transition-all">Python</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">ArcGIS</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">QGIS</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">Revit</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">AutoCAD</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">PLAXIS</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">MATLAB</span>
+<span class="px-6 py-3 glass-card rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:border-primary/50 cursor-default transition-all">Power BI</span>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-section-gap" id="contact">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-section-gap">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-8">Hablemos de tu próximo proyecto</h2>
+<p class="text-on-surface-variant font-body-lg mb-12">Disponible para consultorías en Ingeniería Civil Computacional, análisis de datos geoespaciales y desarrollo de gemelos digitales.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<span class="font-body-md">Bogotá, Colombia | Remoto Worldwide</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<span class="font-body-md">contacto@civildata.tech</span>
+</div>
+</div>
+</div>
+<form class="space-y-6 glass-card p-8 rounded-3xl" onsubmit="event.preventDefault()">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Nombre</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-4 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Juan Pérez" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Email</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-4 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="juan@empresa.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Mensaje</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-4 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="¿Cómo podemos colaborar?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-label-sm text-label-sm uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                        Enviar Mensaje <span class="material-symbols-outlined">send</span>
+</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap border-t border-outline-variant/30 bg-background">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">CIVIL DATA</div>
+<div class="flex gap-8">
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md" href="#">LinkedIn</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md" href="#">GitHub</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md" href="#">Scholar</a>
+<a class="text-on-secondary-container hover:text-primary transition-colors font-body-md" href="#">Contact</a>
+</div>
+<p class="font-body-md text-on-secondary-container text-sm">© 2024 Architectural Intelligence. Built with Data &amp; Steel.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions and animations
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 3D Tilt Effect for cards
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // Active Link Handler
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'border-b-2', 'border-primary', 'pb-1');
+                link.classList.add('text-on-surface-variant');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('text-primary', 'border-b-2', 'border-primary', 'pb-1');
+                    link.classList.remove('text-on-surface-variant');
+                }
+            });
+        });
+    </script>
+</body></html>
